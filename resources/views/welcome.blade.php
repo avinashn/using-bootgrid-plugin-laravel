@@ -22,6 +22,7 @@
         <th data-column-id="first_name" >First Name</th>
         <th data-column-id="last_name" >Last Name</th>
         <th data-column-id="gender" >Gender</th>
+        <th data-column-id="email" >Email</th>
         <th data-column-id="country" >Country</th>
         <th data-column-id="salary">Salary</th>
         <th data-column-id="actions" data-formatter="actions" data-sortable="false">Actions</th>
@@ -34,17 +35,15 @@
         <td>{{$details->first_name}}</td>
         <td>{{$details->last_name}}</td>
         <td>{{$details->gender}}</td>
+        <td>{{$details->email}}</td>
         <td>{{$details->country}}</td>
         <td>{{$details->salary}}</td>
       </tr>
       @endforeach
     </tbody>
   </table>
-
-
   <div id="edit" class="w3-modal">
     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
-
       <div class="w3-center"><br>
         <span onclick="document.getElementById('edit').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Close Modal">&times;</span>
       </div>
@@ -63,16 +62,21 @@
               <label><b>Last name</b></label></div>
               <div class="w3-col s8"><input class="w3-input w3-border w3-margin-bottom" id="lname" type="text" placeholder="Enter Last name" name="lastname" required></div>
             </div>
+            <div class="w3-row">
+              <div class="w3-col s4">
+                <label><b>Gender</b></label></div>
+                <div class="w3-col s8">
+                  <select class="w3-select w3-border w3-margin-bottom" id="gender" name="gender" required>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
               <div class="w3-row">
                 <div class="w3-col s4">
-                  <label><b>Gender</b></label></div>
-                  <div class="w3-col s8">
-                    <select class="w3-select w3-border w3-margin-bottom" id="gender" name="gender" required>
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
+                  <label><b>Email</b></label></div>
+                  <div class="w3-col s8"><input class="w3-input w3-border w3-margin-bottom" id="email" type="email" placeholder="Enter Country" name="country" required></div>
                 </div>
                 <div class="w3-row">
                   <div class="w3-col s4">
@@ -87,23 +91,15 @@
                     <button class="w3-btn-block w3-indigo w3-section w3-padding" type="submit">Save</button>
                   </div>
                 </form>
-
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                   <button onclick="document.getElementById('edit').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
                 </div>
-
               </div>
             </div>
-
-
-
-
             <div id="delete" class="w3-modal">
               <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
-
                 <div class="w3-center"><br>
                   <span onclick="document.getElementById('delete').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Close Modal">&times;</span>
-
                 </div>
                 <header class="w3-container w3-text-indigo w3-margin-top-64">
                   <h1>Delete</h1>
@@ -114,17 +110,11 @@
                     <div class="w3-center"><button type="submit" class="w3-btn w3-indigo"> Delete </button></div>
                   </div>
                 </form>
-
                 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                   <button onclick="document.getElementById('delete').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
-
                 </div>
-
               </div>
             </div>
-
-
-
 
             <script>
             $( document ).ready(function(){
@@ -132,23 +122,21 @@
                 formatters: {
                   "actions": function(column, row)
                   {
-                    return "<button onclick=\"document.getElementById('edit').style.display='block'\" data-first_name="+row.first_name+" data-last_name="+row.last_name+" data-gender="+row.gender+" data-country="+row.country+" data-salary="+row.salary+" class=\"w3-btn w3-blue w3-small edit\"><span class=\"fa fa-pencil\"></span></button> " +
+                    return "<button onclick=\"document.getElementById('edit').style.display='block'\" data-email="+row.email+" data-first_name="+row.first_name+" data-last_name="+row.last_name+" data-gender="+row.gender+" data-country="+row.country+" data-salary="+row.salary+" class=\"w3-btn w3-blue w3-small edit\"><span class=\"fa fa-pencil\"></span></button> " +
                     "<button onclick=\"document.getElementById('delete').style.display='block'\" class=\"w3-btn w3-blue w3-small\"><span class=\"fa fa-remove\"></span></button>";
 
                   }
                 }}).on("loaded.rs.jquery.bootgrid", function (){
                   /* Executes after data is loaded and rendered */
                   $(this).find(".edit").click(function (e) {
-
-                    $('#fname').val(($($(this).attr("data-first_name")).selector));
-                    $('#lname').val(($($(this).attr("data-last_name")).selector));
-                    $('#gender').val(($($(this).attr("data-gender")).selector));
-                    $('#country').val(($($(this).attr("data-country")).selector));
-                    $('#salary').val(($($(this)[data-salary])));
-
+                    $('#fname').val($(this).data("first_name"));
+                    $('#lname').val($(this).data("last_name"));
+                    $('#gender').val($(this).data("gender"));
+                    $('#email').val($(this).data("email"));
+                    $('#country').val($(this).data("country"));
+                    $('#salary').val($(this).data("salary"));
                   });
                 });
-
               });
               </script>
             </body>
