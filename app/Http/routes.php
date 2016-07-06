@@ -6,8 +6,7 @@ Route::get('/', function () {
 });
 Route::post('/save', function () {
   $data = Request::all();
-//dd($data);
-  $edit = BootGridData::where('id',$data['id'])->first();
+  $edit = BootGridData::where('id',$data['edit_id'])->first();
   $edit->first_name=$data['firstname'];
   $edit->last_name=$data['lastname'];
   $edit->email=$data['email'];
@@ -16,5 +15,9 @@ Route::post('/save', function () {
   $edit->salary=$data['salary'];
   $edit->save();
   return Redirect::back();
-  //dd($data);
+});
+Route::post('/delete',function () {
+  $data = Request::all();
+  $edit = BootGridData::where('id',$data['del_id'])->delete();
+  return Redirect::back();
 });

@@ -53,7 +53,7 @@
             </header>
             <form class="w3-container" action="/save" method = "POST">
               {{ csrf_field() }}
-              <input type="hidden" id="id" name="id">
+              <input type="hidden" id="edit_id" name="edit_id">
                <div class="w3-section">
                   <div class="w3-row">
                      <div class="w3-col s4"><label><b>First name</b></label></div>
@@ -82,7 +82,7 @@
                      <div class="w3-col s4">
                         <label><b>Email</b></label>
                      </div>
-                     <div class="w3-col s8"><input class="w3-input w3-border w3-margin-bottom" id="email" type="email" placeholder="Enter Country" name="email" required></div>
+                     <div class="w3-col s8"><input class="w3-input w3-border w3-margin-bottom" id="email" type="email" placeholder="Enter Email" name="email" required></div>
                   </div>
                   <div class="w3-row">
                      <div class="w3-col s4">
@@ -112,7 +112,9 @@
             <header class="w3-container w3-text-indigo w3-margin-top-64">
                <h1>Delete</h1>
             </header>
-            <form class="w3-container" action="form.asp">
+            <form class="w3-container" action="/delete" method="POST">
+              {{ csrf_field() }}
+              <input type="hidden" id="del_id" name="del_id">
                <div class="w3-section">
                   <p>Are you sure, you want to delete <span id ="delete_name"></span> ?</p>
                   <div class="w3-center"><button type="submit" class="w3-btn w3-indigo"> Delete </button></div>
@@ -137,7 +139,7 @@
                /* Executes after data is loaded and rendered */
                $(this).find(".edit").click(function (e) {
 
-                 $('#id').val($(this).data("id"));
+                 $('#edit_id').val($(this).data("id"));
                  $('#fname').val($(this).data("first_name"));
                  $('#lname').val($(this).data("last_name"));
                  $('#gender').val($(this).data("gender"));
@@ -146,7 +148,7 @@
                  $('#salary').val($(this).data("salary"));
                });
                $(this).find(".delete").click(function (e) {
-                 $('#id').val($(this).data("id"));
+                 $('#del_id').val($(this).data("id"));
                  $('#delete_name').html($(this).data("first_name") +" "+ $(this).data("last_name"));
                });
              });
