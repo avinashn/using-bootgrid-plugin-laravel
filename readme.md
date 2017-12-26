@@ -13,8 +13,14 @@
 </ul>
 
 ## Working Demo
-You can see the demo of the project <a href="http://justlaravel.com/demos/using-bootgrid-plugin-laravel/">here</a>
+You can see the demo of the project <a href="http://demos.justlaravel.com/using-bootgrid-plugin-laravel/">here</a>
 
 ## Reference Post
 <a href="http://justlaravel.com/using-bootgrid-plugin-laravel/">http://justlaravel.com/using-bootgrid-plugin-laravel/
 </a>
+
+## App Demo
+https://www.youtube.com/watch?v=SoHzW64S1Ss
+
+## Video Ref
+https://www.youtube.com/watch?v=RYEjA4Iy9Ec
